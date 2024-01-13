@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:foodappseller/consts/consts.dart';
+import 'package:foodappseller/controllers/order_controller.dart';
+import 'package:foodappseller/services/store_sirvices.dart';
 import 'package:foodappseller/views/orders_screen/order_detail.dart';
 import 'package:foodappseller/views/widgets/appbar_widget.dart';
+import 'package:foodappseller/views/widgets/loading_indicator.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
 import '../widgets/text_style.dart';
@@ -10,57 +14,75 @@ class OrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(OrdersController());
     return Scaffold(
       appBar: appbarWidget(orders),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: List.generate(
-                5,
-                (index) => ListTile(
-                      onTap: () {
-                        Get.to(() => const OrderDetails());
-                      },
-                      tileColor: textfieldGrey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      title: boldText(text: "0377750975", color: fontGrey),
-                      subtitle: Column(
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.calendar_month,
-                                color: fontGrey,
+      body: StreamBuilder(
+          stream: StoreServices.getOrders(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return loadingIndicator();
+            } else {
+              var data = snapshot.data!.docs;
+              return Padding(
+                padding: const EdgeInsets.all(8),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: List.generate(
+                        data.length,
+                        (index) => ListTile(
+                              onTap: () {
+                                Get.to(() => OrderDetails(data: data[index]));
+                              },
+                              tileColor: textfieldGrey,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
+                              title:
+                                  boldText(text: "${data[index]['order_code']}", color: fontGrey),
+                              subtitle: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.calendar_month,
+                                        color: fontGrey,
+                                      ),
+                                      10.widthBox,
+                                      normalText(
+                                          text:
+                                          intl.DateFormat()
+                                              .add_yMd()
+                                              .format((data[index]['order-date'].toDate())),
+                                          color: fontGrey),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.payment,
+                                        color: fontGrey,
+                                      ),
+                                      10.heightBox,
+                                      normalText(text: unpaid, color: red)
+                                    ],
+                                  )
+                                ],
                               ),
-                              10.widthBox,
-                              normalText(
-                                  text: intl.DateFormat.yMd()
-                                      .add_jm()
-                                      .format(DateTime.now()),
-                                  color: fontGrey),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.payment,
-                                color: fontGrey,
-                              ),
-                              10.heightBox,
-                              normalText(text: unpaid, color: red)
-                            ],
-                          )
-                        ],
-                      ),
-                      trailing: boldText(
-                          text: "\$4000", color: purpleColor, size: 18.0),
-                    ).box.margin(const EdgeInsets.only(bottom: 5)).make()),
-          ),
-        ),
-      ),
+                              trailing: boldText(
+                                  text: "${data[index]['total_amount']} vnd",
+                                  color: purpleColor,
+                                  size: 16.0),
+                            )
+                                .box
+                                .margin(const EdgeInsets.only(bottom: 5))
+                                .make()),
+                  ),
+                ),
+              );
+            }
+          }),
     );
   }
 }

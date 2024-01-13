@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "name": "Women Dress",
+      "name": "Cơm",
       "subcategory": [
         "Wedding & Event",
         "Tops & Sets",
@@ -9,7 +9,7 @@
       ]
     },
     {
-      "name": "Men Clothing & Fashion",
+      "name": "Phở",
       "subcategory": [
         "Outwear & Jackets",
         "Formal Dress",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "name": "Computer & Accessories",
+      "name": "Chè",
       "subcategory": [
         "Laptop",
         "Gaming PC",
@@ -25,14 +25,14 @@
       ]
     },
     {
-      "name": "Automobile",
+      "name": "Trà sữa",
       "subcategory": [
         "Cars",
         "Bikes"
       ]
     },
     {
-      "name": "Kids & Toys",
+      "name": "Ăn vặt",
       "subcategory": [
         "Shoes & Bags",
         "Baby Clothing",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "name": "Sports",
+      "name": "Đồ nhậu",
       "subcategory": [
         "Cycling",
         "Sneakers",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "name": "Jewelery",
+      "name": "Đồ uống",
       "subcategory": [
         "Necklace",
         "Gold",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "name": "Cellphone & Tab",
+      "name": "Rượu bia",
       "subcategory": [
         "Smartphone",
         "Tablets",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "name": "Furniture",
+      "name": "Thức ăn nhanh",
       "subcategory": [
         "Sofa",
         "Bed",

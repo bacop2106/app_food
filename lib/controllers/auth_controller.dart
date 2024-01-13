@@ -13,6 +13,9 @@ class AuthController extends GetxController {
   Future<UserCredential?> loginMethod({context}) async {
     UserCredential? userCredential;
 
+    emailController.text = 'admin@gmail.com';
+    passwordController.text = '12345678';
+
     try {
       userCredential = await auth.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
