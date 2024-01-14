@@ -2,6 +2,7 @@ import 'package:foodappseller/consts/consts.dart';
 import 'package:foodappseller/controllers/home_controller.dart';
 import 'package:foodappseller/views/home_screen/home_screen.dart';
 import 'package:foodappseller/views/orders_screen/order_screen.dart';
+import 'package:foodappseller/views/orders_screen/thong_ke.dart';
 import 'package:foodappseller/views/product_screen/products_screen.dart';
 import 'package:foodappseller/views/profile_screen/profile_screen.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,8 @@ class Home extends StatelessWidget {
       const HomeScreen(),
       const ProductsScreen(),
       const OrderScreen(),
-      const ProfileScreen()
+      const ProfileScreen(),
+      const ThongKeScreen(),
     ];
     var bottomNavbar = [
       const BottomNavigationBarItem(icon: Icon(Icons.home), label: dashboard),
@@ -33,6 +35,9 @@ class Home extends StatelessWidget {
       BottomNavigationBarItem(
           icon: Image.asset(icGeneralSettings, color: darkGrey, width: 24),
           label: settings),
+      BottomNavigationBarItem(
+          icon: Image.asset(icOrders, color: darkGrey, width: 24),
+          label: "expense dashboard"),
     ];
     return Scaffold(
       bottomNavigationBar: Obx(
