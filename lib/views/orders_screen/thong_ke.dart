@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:foodappseller/consts/consts.dart';
 import 'package:foodappseller/controllers/order_controller.dart';
+import 'package:foodappseller/thong_ke/theo_ngay.dart';
+import 'package:foodappseller/thong_ke/theo_thang.dart';
 import 'package:foodappseller/views/orders_screen/order_detail.dart';
+import 'package:foodappseller/views/orders_screen/order_screen.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
 import '../../services/store_sirvices.dart';
 import '../widgets/appbar_widget.dart';
 import '../widgets/loading_indicator.dart';
-import '../widgets/text_style.dart';
 
 class ThongKeScreen extends StatelessWidget {
   const ThongKeScreen({super.key});
@@ -55,6 +57,54 @@ class ThongKeScreen extends StatelessWidget {
                         .width(context.screenWidth - 60)
                         .roundedSM
                         .make(),
+                    Divider(),
+                    "THỐNG KÊ CHI TIẾT".text.size(20).make(),
+                    20.heightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        "Theo ngày".text.size(20).make(),
+                      ],
+                    )
+                        .box
+                        .color(darkGrey)
+                        .padding(const EdgeInsets.all(12))
+                        .width(context.screenWidth - 60)
+                        .roundedSM
+                        .make()
+                        .onTap(() {
+                      Get.to(() => TheoNgayScreen());
+                    }),
+                    20.heightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        "Theo tháng".text.size(20).make(),
+                      ],
+                    )
+                        .box
+                        .color(darkGrey)
+                        .padding(const EdgeInsets.all(12))
+                        .width(context.screenWidth - 60)
+                        .roundedSM
+                        .make()
+                        .onTap(() {
+                      Get.to(() => TheoThangScreen());
+                    }),
+                    20.heightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        "Theo năm".text.size(20).make(),
+                      ],
+                    )
+                        .box
+                        .color(darkGrey)
+                        .padding(const EdgeInsets.all(12))
+                        .width(context.screenWidth - 60)
+                        .roundedSM
+                        .make()
+                        .onTap(() {}),
                   ]),
                 ),
               );
