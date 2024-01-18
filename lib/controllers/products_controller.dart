@@ -81,11 +81,20 @@ class ProductsController extends GetxController {
       'vendor_id': currentUser!.uid,
       'p_wishlist': FieldValue.arrayUnion([]),
     });
-    isloading(false);
+    _clearData();
     VxToast.show(context, msg: "Product uploaded");
   }
 
-  removeProduct(docID)async{
+  removeProduct(docID) async {
     await firestore.collection(productsCollection).doc(docID).delete();
+  }
+
+  _clearData() {
+    isloading(false);
+    pnameController.clear();
+    pdescController.clear();
+    ppriceController.clear();
+    pquantityController.clear();
+    pImagesLinks.clear();
   }
 }
